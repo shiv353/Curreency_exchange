@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" href="/icon/icon.ico">
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="title">
+        <p>"KRNSSy X-Change Analyser"</p>
+    </div>
+    <div class="btn-box">
+        <button class="tablinks" onclick="toggleChart()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-graph-up"
+                viewBox="0 0 16 16">
+                <path fill-rule="evenodd"
+                    d="M0 0h1v15h15v1H0V0Zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07Z" />
+            </svg>Charts
+        </button>
+            <button class="tablinks" onclick="toggleConvert()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-currency-exchange" viewBox="0 0 16 16">
+                    <path
+                        d="M0 5a5.002 5.002 0 0 0 4.027 4.905 6.46 6.46 0 0 1 .544-2.073C3.695 7.536 3.132 6.864 3 5.91h-.5v-.426h.466V5.05c0-.046 0-.093.004-.135H2.5v-.427h.511C3.236 3.24 4.213 2.5 5.681 2.5c.316 0 .59.031.819.085v.733a3.46 3.46 0 0 0-.815-.082c-.919 0-1.538.466-1.734 1.252h1.917v.427h-1.98c-.003.046-.003.097-.003.147v.422h1.983v.427H3.93c.118.602.468 1.03 1.005 1.229a6.5 6.5 0 0 1 4.97-3.113A5.002 5.002 0 0 0 0 5zm16 5.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0zm-7.75 1.322c.069.835.746 1.485 1.964 1.562V14h.54v-.62c1.259-.086 1.996-.74 1.996-1.69 0-.865-.563-1.31-1.57-1.54l-.426-.1V8.374c.54.06.884.347.966.745h.948c-.07-.804-.779-1.433-1.914-1.502V7h-.54v.629c-1.076.103-1.808.732-1.808 1.622 0 .787.544 1.288 1.45 1.493l.358.085v1.78c-.554-.08-.92-.376-1.003-.787H8.25zm1.96-1.895c-.532-.12-.82-.364-.82-.732 0-.41.311-.719.824-.809v1.54h-.005zm.622 1.044c.645.145.943.38.943.796 0 .474-.37.8-1.02.86v-1.674l.077.018z" />
+                </svg>Convert
+            </button>
+        
+    </div>
+    
+    <div class="content" id="Chart">
+        <div class="content-left">
+            <p>From:</p>
+            <select class="" id="curr-1" required onchange="chartChange()">
+            </select>
+        </div>
+        <div class="content-center" id="toID">
+            <p>To:</p>
+            <select class="" id="curr-2" required onchange="chartChange()">
+            </select>
+        </div>
+        <div class="content-right">
+            <p>Year:</p>
+            <select class="" id="year" required onchange="chartChange()">
+                <option value="2012" selected>2012</option>
+                <option value="2013">2013</option>
+                <option value="2014">2014</option>
+                <option value="2015">2015</option>
+                <option value="2016">2016</option>
+                <option value="2017">2017</option>
+                <option value="2018">2018</option>
+                <option value="2019">2019</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+            </select>
+        </div>
+        <div class="content-right">
+            <p>Month:</p>
+            <select class="" id="month" required onchange="chartChange()">
+                <option value="Jan" selected>January</option>
+                <option value="Feb">Februay</option>
+                <option value="Mar">March</option>
+                <option value="Apr">April</option>
+                <option value="May">May</option>
+                <option value="Jun">June</option>
+                <option value="Jul">July</option>
+                <option value="Aug">August</option>
+                <option value="Sep">September</option>
+                <option value="Oct">October</option>
+                <option value="Nov">November</option>
+                <option value="Dec">December</option>
+            </select>
+        </div>
+        <div class="content-right">
+            <p>Day:</p>
+            <select class="" id="day" required onchange="chartChange()">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6" selected>6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
+    <div class="btn-group" role="group"  id="btn-grp" aria-label="Basic radio toggle button group">
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="1M"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio1" >1M</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="1Q"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio2">1Q</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" value="2Q"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio3">2Q</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" value="3Q"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio4">3Q</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" value="4Q"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio5">4Q</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio6" autocomplete="off" value="weekly"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio6">Weekly</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio7" autocomplete="off" value="quarterly"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio7">Quarterly</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio8" autocomplete="off" value="monthly"
+            onclick="chartChange()">
+        <label class="btn btn-outline-light b1" for="btnradio8">Monthly</label>
+
+        <input type="radio" class="btn-check" name="btnradio" id="btnradio9" autocomplete="off" value="yearly" checked
+            onclick="chartChange()" style=>
+        <label class="btn btn-outline-light b1" for="btnradio9">Yearly</label>
+    </div>
+
+    <!--Chart-->
+    <div class="chart-container" id="tab1">
+        <div class="chart">
+            <div id="myChart"></div>
+        </div>
+        <div class="cards" style="width: 40%;">
+            <div class="container  mx-auto d-flex my-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">HIGH 📈</div>
+                    <div class="card-body" >
+                        <p class="card-text" id="c1"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="container  mx-auto d-flex my-4">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-header">LOW 📉</div>
+                    <div class="card-body">
+                        <p class="card-text" id="c2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/index.js"></script>
+    <br>
+
+    <div class="converter-container" id="tab2" >
+        Amount:
+        <input id="takeInp" type="number" onchange="currConvert()" value=1 style="width: 50px;"></input>
+        <div><p id="converse"></p></div>      
+    </div>
+    
+    <footer class="page-footer font-small" id="foot">
+
+        <div class="footer-copyright text-center py-3">
+            List of ISO currency codes and definitions is available<a href="https://www.iban.com/currency-codes " target="_blank">here.</a>
+        </div>
+    </footer>
+</body>
+
+</html>
